@@ -26,9 +26,8 @@ feedbackForm.addEventListener('submit', e => {
 });
 
 function restoreFormData() {
-  let restoredData = localStorage.getItem(LOCALSTORAGEKEY);
-  if (restoredData !== null) {
-    formData = JSON.parse(restoredData);
+  if (localStorage.getItem(LOCALSTORAGEKEY)) {
+    formData = JSON.parse(localStorage.getItem(LOCALSTORAGEKEY));
     feedbackForm.elements.email.value = formData.email;
     feedbackForm.elements.message.value = formData.message;
   }
