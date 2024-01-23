@@ -7,14 +7,7 @@ let formData = {
 };
 
 feedbackForm.addEventListener('input', e => {
-  if (e.target.name === 'email') {
-    formData.email = e.target.value;
-  }
-
-  if (e.target.name === 'message') {
-    formData.message = e.target.value;
-  }
-
+  formData[e.target.name] = e.target.value;
   localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(formData));
 });
 
@@ -23,6 +16,9 @@ feedbackForm.addEventListener('submit', e => {
   console.log(formData);
   localStorage.removeItem(LOCALSTORAGEKEY);
   e.target.reset();
+  Object.keys(formData).map(key => {
+    formData[key] = '';
+  });
 });
 
 function restoreFormData() {
